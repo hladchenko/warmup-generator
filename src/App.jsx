@@ -15,7 +15,7 @@ function App() {
   const [inputValue, setInputValue] = useState(questionSet.length);
 
   const getRandomQuestion = () => {
-    const num = Math.floor(Math.random() * inputValue);
+    const num = Math.floor(Math.random() * (inputValue - 1));
     return questionSet[num];
   };
   const [question, setQuestion] = useState(getRandomQuestion);
