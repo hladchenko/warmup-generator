@@ -27,7 +27,9 @@ function App() {
     }, 700);
 
     changeQuestion();
-    // showAnimation();
+    setTimeout(() => {
+      showAnimation();
+    }, 2000);
   };
 
   const setRandomQuestion = () => setQuestion(getRandomQuestion);
