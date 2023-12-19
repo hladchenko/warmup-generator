@@ -14,8 +14,9 @@ function App() {
   const [questionSet, setQuestionSet] = useState(juniorQuestions);
   const [inputValue, setInputValue] = useState(questionSet.length);
 
-  const getRandomQuestion = () => {
-    const num = Math.floor(Math.random() * (inputValue - 1));
+  const getRandomQuestion = (fromQuestionSet = false) => {
+    const num = Math.floor(Math.random() * ((fromQuestionSet ? questionSet.length :  inputValue) - 1));
+    console.log(num);
     return questionSet[num];
   };
   const [question, setQuestion] = useState(getRandomQuestion);
@@ -35,7 +36,7 @@ function App() {
     }, 2000);
   };
 
-  const setRandomQuestion = () => setQuestion(getRandomQuestion);
+  const setRandomQuestion = (fromQuestionSet = false) => setQuestion(getRandomQuestion(fromQuestionSet));
 
   const changeQuestion = () => {
     let timeout = 30;
@@ -54,7 +55,7 @@ function App() {
 
   useEffect(() => {
     if (triggered === true) {
-      setRandomQuestion();
+      setRandomQuestion(true);
       changeInputValue(questionSet.length);
     } else {
       setTriggered(true);
