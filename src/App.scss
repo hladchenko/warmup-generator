@@ -59,17 +59,10 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    width: 800px;
+    max-width: 800px;
     font-size: 50px;
     line-height: 1.2;
     text-align: center;
-}
-
-@media (max-width: 767px) {
-    .menu--item {
-        font-size: 10vw;
-        padding: 1rem 0;
-    }
 }
 
 .menu--item div {
@@ -92,13 +85,6 @@ body {
     box-shadow: none;
     color: #020000;
     font-family: "Orelo-sw-db", serif;
-    cursor: pointer;
-}
-
-@media (max-width: 767px) {
-    .menu--item div {
-        font-size: 10vw;
-    }
 }
 
 @font-face {
@@ -111,6 +97,7 @@ body {
 .question-container {
     display: flex;
     min-height: 300px;
+    margin: 0 10px;
 }
 
 .question {
@@ -147,5 +134,5 @@ body {
 
 .dropdown {
     align-self: flex-start;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
