@@ -19,7 +19,6 @@
 
 body {
     height: 100vh;
-    overflow: hidden;
     color: #020000;
 }
 
@@ -27,8 +26,6 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    align-content: center;
     flex-direction: column;
     width: 800px;
 }
@@ -135,4 +132,29 @@ body {
 .dropdown {
     align-self: flex-start;
     margin-bottom: 70px;
+}
+
+.input-menu {
+    display: flex;
+}
+
+.question-quantity {
+    margin-left: 10px;
+    position: relative;
+    width: 130px;
+    height: 56px;
+    filter: url(#goo);
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: "Helvetica", "Arial", sans-serif;
+
+    background-color: #ff0081;
+    padding: 20px;
+    border-radius: 25px;
+    border: none;
+
+    &:focus,&:focus-visible {
+        outline: none;
+    }
 }
