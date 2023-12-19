@@ -12,10 +12,12 @@ const questions = {
 
 function App() {
   const [questionSet, setQuestionSet] = useState(juniorQuestions);
-  const [inputValue, setInputValue] = useState(questionSet.length);
+  const [inputValue, setInputValue] = useState(questionSet.length - 1);
 
   const getRandomQuestion = (fromQuestionSet = false) => {
-    const num = Math.floor(Math.random() * ((fromQuestionSet ? questionSet.length :  inputValue) - 1));
+    console.log("input value: ", inputValue);
+    const num = Math.floor(Math.random() * ((fromQuestionSet ? questionSet.length :  inputValue)));
+    console.log(num);
     return questionSet[num];
   };
   const [question, setQuestion] = useState(getRandomQuestion);
@@ -55,7 +57,7 @@ function App() {
   useEffect(() => {
     if (triggered === true) {
       setRandomQuestion(true);
-      changeInputValue(questionSet.length);
+      changeInputValue(questionSet.length - 1);
     } else {
       setTriggered(true);
     }
@@ -71,8 +73,8 @@ function App() {
   };
 
   const changeInputValue = (newValue) => {
-    if (newValue > questionSet.length || newValue <= 0 || !newValue) {
-      newValue = questionSet.length;
+    if (newValue >= questionSet.length || newValue <= 0 || !newValue) {
+      newValue = questionSet.length - 1;
     }
     setInputValue(newValue);
   };
