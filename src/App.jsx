@@ -12,7 +12,7 @@ const questions = {
 
 function App() {
   const [questionSet, setQuestionSet] = useState(juniorQuestions);
-  const [inputValue, setInputValue] = useState(questionSet.length - 1);
+  const [inputValue, setInputValue] = useState(questionSet.length);
 
   const getRandomQuestion = (fromQuestionSet = false) => {
     const num = Math.floor(Math.random() * ((fromQuestionSet ? questionSet.length :  inputValue)));
@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     if (triggered === true) {
       setRandomQuestion(true);
-      changeInputValue(questionSet.length - 1);
+      changeInputValue(questionSet.length);
     } else {
       setTriggered(true);
     }
@@ -72,7 +72,7 @@ function App() {
 
   const changeInputValue = (newValue) => {
     if (newValue >= questionSet.length || newValue <= 0 || !newValue) {
-      newValue = questionSet.length - 1;
+      newValue = questionSet.length;
     }
     setInputValue(newValue);
   };
