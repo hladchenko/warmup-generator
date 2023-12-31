@@ -34,7 +34,7 @@ export const questions = [
   {
     title: '👉 Implement a simple Binary Search Tree',
     description: 'Create a simple version of a Binary Search Tree implementing the following static methods:',
-    notes: [
+    hints: [
       'createBinarySearchTree – accepts varargs of elements, creates a binary search tree based on them and returns the root node',
       'inOrderTraversal – accepts the root node, and an element consumer. Process each node in ascending order using the given consumer',
     ],
@@ -43,7 +43,7 @@ export const questions = [
   {
     title: '👉 Say hello from the other thread [10 min]',
     description: 'Create a code snippet for each option executing the following statement in the other thread:',
-    notes: [
+    hints: [
       'System.out.println("Hello from " + Thread.currentThread().getName());',
     ],
   },
