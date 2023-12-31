@@ -45,6 +45,8 @@ function App() {
     }, 2000)
   };
 
+  console.log(question);
+
   return (
       <div className="App">
         <div className="container">
@@ -53,7 +55,17 @@ function App() {
               <div className={buttonPressed ? "question question-shake"
                   : "question"}>
                 <div className="title">{question?.title}</div>
-                <div className="description">{question?.description}</div>
+                <div className="description">
+                  {question?.link
+                      ? <a href={question?.link}>
+                        <p>{question?.description}</p>
+                      </a>
+                      : <p>{question?.description}</p>
+                  }
+                  {question?.hints && <ul>{question?.hints?.map(
+                      (hint, key) => <li key={key}>{hint}</li>)}</ul>}
+                  {question?.star && <p className="star">* {question?.star}</p>}
+                </div>
               </div>
             </div>
             <button onClick={clickHandler}
