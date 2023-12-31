@@ -1,4 +1,4 @@
-$fuschia: #ff0081;
+$fuschia: #2200ff;
 $button-bg: $fuschia;
 $button-text-color: #fff;
 $baby-blue: #f8faff;
@@ -19,7 +19,7 @@ $baby-blue: #f8faff;
   cursor: pointer;
   position: relative;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+  box-shadow: 0 2px 25px rgba(47, 0, 255, 0.79);
 
   &:focus {
     outline: 0;
