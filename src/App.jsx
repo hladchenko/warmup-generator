@@ -1,14 +1,16 @@
 import './App.scss';
 import './Button.scss';
 import {questions} from "./questions";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Alert from "./compoments/Alert/Alert";
 
 function App() {
   const [questionSet, setQuestionSet] = useState(questions);
+  const [showAlert, setShowAlert] = useState(false);
+  const [justAttached, setJustAttached] = useState(false);
 
   const getRandomQuestion = () => {
     const num = Math.floor(Math.random() * questionSet.length);
-    console.log(num);
     return questionSet[num];
   };
   const [question, setQuestion] = useState(getRandomQuestion);
@@ -45,13 +47,52 @@ function App() {
     }, 2000)
   };
 
-  console.log(question);
+  useEffect(() => {
+    setJustAttached(true);
+    if (showAlert) {
+      setTimeout(() => {
+        setJustAttached(false);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 500);
+      }, 2000);
+    }
+  }, [showAlert]);
+
+  const questionContainerOnClickHandler = async () => {
+    console.log(getText());
+    try {
+      await navigator.clipboard.writeText(getText());
+      setShowAlert(true);
+      console.log('Content copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  const getText = () => {
+    let fullText = question?.title + "\n\n" + question?.description;
+
+    fullText += question?.link ? `\n\n${question?.link}` : '';
+
+    const isHints = question?.hints?.length> 0;
+
+    if (isHints) {
+      fullText += '\n';
+    }
+
+    question?.hints?.forEach((hint, index) => fullText+= "\n- " + hint);
+
+    fullText += question?.star ? '\n\n' + "* " + question?.star : '';
+
+    return fullText;
+  };
 
   return (
       <div className="App">
         <div className="container">
           <div className="menu--item">
-            <div className="question-container">
+            <div className="question-container" onClick={questionContainerOnClickHandler}>
               <div className={buttonPressed ? "question question-shake"
                   : "question"}>
                 <div className="title">{question?.title}</div>
@@ -74,6 +115,7 @@ function App() {
             </button>
           </div>
         </div>
+        {showAlert && <Alert justAttached={justAttached} />}
       </div>
   );
 }
