@@ -1,7 +1,7 @@
 import './App.scss';
 import './Button.scss';
 import {questions} from "./questions";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Alert from "./compoments/Alert/Alert";
 
 function App() {
@@ -17,15 +17,18 @@ function App() {
   const [buttonPressed, setButtonPressed] = useState(false);
   const [animateButton, setAnimateButton] = useState(false);
 
+  const buttonRef = useRef(null);
+
   const clickHandler = async () => {
+    hideButton();
     setAnimateButton(true);
     setTimeout(() => {
       setAnimateButton(false);
     }, 700);
-
     changeQuestion();
     setTimeout(() => {
       showAnimation();
+    showButton();
     }, 2000);
   };
 
@@ -87,6 +90,25 @@ function App() {
     return fullText;
   };
 
+  const hideButton = () => {
+    buttonRef.current.style.opacity = `0%`;
+  };
+
+  let interval = null;
+  const showButton = () => {
+    interval = setInterval(fadeIn, 10);
+  };
+
+  const fadeIn = () => {
+    let opacity = Number(buttonRef.current.style.opacity);
+    if (opacity < 1) {
+      opacity = opacity + 0.01;
+      buttonRef.current.style.opacity = opacity
+    } else {
+      clearInterval(interval);
+    }
+  };
+
   return (
       <div className="App">
         <div className="container">
@@ -108,7 +130,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <button onClick={clickHandler}
+            <button ref={buttonRef} onClick={clickHandler}
                     className={animateButton ? "bubbly-button animate"
                         : "bubbly-button"}>7AM
             </button>
