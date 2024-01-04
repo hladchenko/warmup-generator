@@ -28,7 +28,9 @@ function App() {
     changeQuestion();
     setTimeout(() => {
       showAnimation();
-    showButton();
+      setTimeout(() => {
+        showButton();
+      }, 600)
     }, 2000);
   };
 
