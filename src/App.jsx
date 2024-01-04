@@ -60,7 +60,6 @@ function App() {
   }, [showAlert]);
 
   const questionContainerOnClickHandler = async () => {
-    console.log(getText());
     try {
       await navigator.clipboard.writeText(getText());
       setShowAlert(true);
