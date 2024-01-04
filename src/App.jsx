@@ -111,6 +111,10 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    buttonRef.current.focus();
+  }, []);
+
   return (
       <div className="App">
         <div className="container">
